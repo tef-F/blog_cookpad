@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Blog CookPad</a>
+         <a class="navbar-brand ml-auto" href="/me">Đăng nhập</a>
+         <p id="test"></p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" hidden>
+          <ul class="navbar-nav ml-auto">
+            {{!-- <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li> --}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <b id="username">Unknown</b>
+                
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/food/show">Danh sách món ăn</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/me/stored/courses">Khoá học của tôi</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" id="logout" href="/me/logout">Đăng xuất</a>
+              </div>
+            </li> 
+          </ul>   
+        </div>
+    </div>
+
+    
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+  $.getJSON( 'http://localhost:3000/me/api', function( data ) {
+    if(data[0]) {
+      $('#username').text(data[0].user_name);           
+    }
+    else {
+      $('#username').text('Bạn cần đăng nhập');
+    }
+  });
+</script>
+

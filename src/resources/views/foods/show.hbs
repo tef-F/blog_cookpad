@@ -1,0 +1,26 @@
+<h1> Danh sách FOOD</h1>
+<p>{{dataU}}</p>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên</th>
+            <th scope="col" >Hình ảnh</th>
+            <th scope="col" >Cách làm</th>
+            <th scope="col">id_user</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each foods}}
+        <tr>
+            <th scope="row">{{this.id_food}}</th>
+            <td>{{this.title}}</td>
+            <td><img class="icon-image" src="{{this.image}}" alt="{{this.title}}"></td>
+            <td>{{this.making}}</td>
+            <td>{{this.id_user}}</td>
+        </tr>
+        {{/each}} 
+    </tbody>
+</table>
+
+

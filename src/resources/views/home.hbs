@@ -1,0 +1,23 @@
+<div class="mt-4">
+    <div class="row"> 
+       {{#each foods}}
+        <div class="col-sm-6 col-lg-4 m-04">
+            <div class="card">
+                <img class="img-food img-fluid img-thumbnail" src="{{this.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="/food/{{this.id_food}}">
+                        <h5 class="card-title">
+                            {{this.title}}
+                        </h5>
+                    </a>
+                    <p class="card-text">{{this.description}}</p>
+                </div>
+                    <div class="card-footer">
+                    <small class="text-muted">{{this.time}}</small>
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </div>
+</div>
+

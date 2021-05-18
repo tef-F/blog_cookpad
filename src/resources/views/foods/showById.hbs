@@ -1,0 +1,27 @@
+<div class="mt-04">
+    <div class="row"> 
+        <div class="col-md-5">
+            <div class="project-info-box mt-0">
+                <h5>{{food.0.title}}</h5>
+                <p class="mb-0">{{food.0.description}}</p>
+            </div><!-- / project-info-box -->
+
+            <div class="project-info-box">
+                {{#each step}}
+                <p><b>Bước {{this.step}}:</b> {{this.description}}</p>
+                {{/each}}
+            </div><!-- / project-info-box -->
+
+            
+        </div><!-- / column -->
+        <div class="col-md-7">
+            <img src="{{food.0.image}}" alt="project-image" class="img-details rounded">
+            <div class="project-info-box">
+                {{!-- <p><b>Categories:</b> Design, Illustration</p>
+                <p> Illustrator</p> --}}
+
+                <p><b>Bình luận</b></p>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+    </div>
+</div>

@@ -1,4 +1,5 @@
 const Food = require('../models/Food');
+const Category = require('../models/Category');
 
 class SiteController {
     //[GET] /home
@@ -12,7 +13,12 @@ class SiteController {
     }
     // [GET] /search
     search(req, res, next) {
-        res.render('home', { data: 'ABC' });
+        Category.getAllCategory((err, data) => {
+            if (err) res.send(err);
+            return res.render('search', {
+                cate: data,
+            });
+        });
     }
 }
 

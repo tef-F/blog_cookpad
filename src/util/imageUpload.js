@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, '../blog_cookpad/src/public/img/upload');
+            cb(null, '../blog_cookpad/src/public/img/food');
         },
         filename: function (req, file, cb) {
             return crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -15,7 +15,11 @@ module.exports = {
                 }
                 return cb(
                     null,
-                    '' + raw.toString('hex') + path.extname(file.originalname),
+                    'quen_' +
+                        Date.now() +
+                        '_' +
+                        raw.toString('hex') +
+                        path.extname(file.originalname),
                 );
             });
         },

@@ -7,14 +7,15 @@ class Step {
     // };
 
     getStepByIdFood = (id, callback) => {
-        let sql = 'SELECT * FROM food_steps WHERE id_food = ?';
+        let sql =
+            'SELECT * FROM food_steps WHERE id_food = ? ORDER BY food_steps.step ASC';
         return db.query(sql, [id], callback);
     };
 
-    // addFood = (data, callback) => {
-    //     let sql = 'INSERT INTO `food` SET ?';
-    //     return db.query(sql, data, callback);
-    // };
+    addStep = (data, callback) => {
+        let sql = 'INSERT INTO `food_steps` SET ?';
+        return db.query(sql, data, callback);
+    };
 }
 
 module.exports = new Step();

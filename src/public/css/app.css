@@ -21,6 +21,12 @@
   height: auto;
   object-fit: cover; }
 
+.img-cate {
+  display: block;
+  height: 200px;
+  width: auto;
+  object-fit: cover; }
+
 .project {
   margin: 15px 0; }
 

@@ -1,6 +1,24 @@
-<h1>UPLOAD IMG</h1>
+<div class="row">
 
-<form method='post' action='/food/img/upload' enctype='multipart/form-data'>
-    <input type='file' name='upload'/>"
-    <input type='submit' />
-</form>
+    <div class="col-sm-8">
+        
+        <h1>UPLOAD IMG</h1>
+
+        <form method='POST' action='/food/img/upload' >
+            <input type='file' name='food[img_food]'/>"
+            <input type='submit' />
+        </form>
+
+        <div class="mt-4">
+            <form  method="POST" action="/food/img/multiple-upload"enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="example-input-file"> </label>
+                    <input type="file" name="many_files" multiple id="input-many-files" class="form-control-file border">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

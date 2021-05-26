@@ -1,0 +1,28 @@
+
+<div class="row m-4">
+    <div class="col-sm-4 col-lg-4 p-4">
+        <form action="/food/api/find" method="POST" >
+            <div class="form-group">
+                <label for="search-input"><h5 class="card-title">Nhập tên món ăn cần tìm</h5></label>
+                <input type="text" name="q" class="form-control" id="search-input" placeholder="Nhập từ khoá... "> 
+            </div>
+            <button type="submit" class="btn btn-primary">TÌm kiếm</button>
+        </form>
+    </div>
+
+    <div class="col-sm-8 p-4">
+        <h4 class="card-title">Món ăn phổ biến</h4>
+        {{#each cate}}
+            <div class="card mb-3">
+                <img class="card-img-top img-cate" src="{{this.image_cate}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>   
+                </div>
+            </div>
+        {{/each}}
+        
+    </div>
+
+    
+
+</div>

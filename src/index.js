@@ -6,10 +6,13 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 // APP
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const route = require('./routes');
 const db = require('./config/db');
 const methodOverride = require('method-override');
+const formidable = require('formidable');
+//Using public patch
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Session
 app.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
@@ -18,8 +21,7 @@ app.use(methodOverride('_method'));
 //CookieParser
 app.use(cookieParser());
 //Body parser
-//Using public patch
-app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(
     express.urlencoded({
         extended: true,

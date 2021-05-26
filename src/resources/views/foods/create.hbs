@@ -1,20 +1,107 @@
+{{!-- <h2>With <code>"express"</code> npm package</h2>
+    <form action="/food/store" enctype="multipart/form-data" method="post">
+      <div>Text field title: <input type="text" name="title" /></div>
+      <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
+      <input type="submit" value="Upload" />
+    </form> --}}
 
-<h1>Thêm món ăn</h1>
-<div class="mt-04">
-  <form method="POST" action="/food/store">
-    <div class="form-group">
-      <label for="title">Tên</label>
-      <input type="text" name="title" class="form-control" id="title"  placeholder="....">
-      
+
+
+
+
+<h1 id="test">Thêm món ăn</h1>
+  <form method="POST" action="/food/store" >
+    <div class="row m-4">
+      <div class="col-sm-5">  
+          <div class="form-group">
+            <label for="title">Tên</label>
+            <input type="text" name="title" class="form-control" id="title"  placeholder="....">
+            
+          </div>
+          {{!-- <div class="form-group">
+            <label for="Image">Hình ảnh</label>
+            <input type="text" name="foodList[food][image]" class="form-control" id="image" placeholder=".....">
+          </div> --}}
+          <div class="form-group">
+            <label  for="description">Mô tả</label>
+            <input type="text" name="description" class="form-control" id="description">
+          </div>
+          <div class="form-group">
+            <label  for="time">Thời gian</label>
+            <input type="text" name="time" class="form-control" id="time">
+          </div>
+          <div class="form-group">
+            <label  for="ingredient">Nguyên liệu</label>
+            <input type="text" name="ingredient" class="form-control" id="ingredient">
+          </div>
+           {{!-- <div class="form-group">
+            <label for="image">Chọn ảnh đại diện cho món ăn</label>
+            <input type="file" class="form-control-file" name="image"  multiple="multiple" id="image">
+          </div> --}}
+      </div>
+      <div class="col-sm-7">
+
+        {{!-- <button type="button" class="btn btn-primary" id="add-form" >Thêm bước</button>
+        <button type="button" class="btn btn-danger" id="del-row" >Xoá bước này</button>
+        <div class="step-form" id="form-1">
+          <div class="form-add">
+             <div class="form-group">
+              <input type="text" name="foodList[step][0][id]" hidden value="1">
+              <label for="Image">Bước 1</label>
+              <input type="file" class="form-control-file" name="foodList[step][0][image]" id="image">
+            </div>
+            <div class="form-group">
+              <label  for="desc">Mô tả</label>
+              <input type="text" name="foodList[step][0][desc]" class="form-control" id="desc">
+            </div> 
+          </div> 
+        </div> --}}
+      </div>
+      <button type="submit" class="btn btn-primary">Thêm</button>
     </div>
-    <div class="form-group">
-      <label for="Image">Hình ảnh</label>
-      <input type="text" name="image" class="form-control" id="image" placeholder=".....">
-    </div>
-    <div class="form-group">
-      <label  for="making">Making</label>
-      <input type="text" name="making" class="form-control" id="making">
-    </div>
-    <button type="submit" class="btn btn-primary">Tạo</button>
   </form>
-</div>
+
+
+
+<script>
+
+   window.addEventListener('DOMContentLoaded', function() {
+
+    var i = 1;
+    function afterText(i) {
+        $('.step-form').append(`
+        <div class="form-add" id="form-${i}">
+             <div class="form-group">
+              <input type="text" name="foodList[step][${i}][id]" hidden value="${i}">
+              <label for="Image">Bước ${i}</label>
+              <input type="file" class="form-control-file" name="foodList[step][${i}][image]" id="image">
+            </div>
+            <div class="form-group">
+              <label  for="desc">Mô tả</label>
+              <input type="text" name="foodList[step][${i}][desc]" class="form-control" id="desc">
+            </div> 
+          </div> 
+      `);    // Insert new elements after img
+    }
+    function del(i) {
+     
+    }
+    
+    $(`#add-form`).click(function() {
+        i++;
+        afterText(i);
+    });
+    /*if(i = 1) {
+      $('#del-row').hide();
+    } else {
+      $('#del-row').show();
+    }*/
+    $(`#del-row`).click(function() {
+        $(`#form-${i}`).remove(); 
+    })
+
+    
+
+   });
+
+</script> 

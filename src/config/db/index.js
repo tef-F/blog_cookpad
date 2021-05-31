@@ -6,6 +6,7 @@ const con = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'blog_cookpad',
+    charset: 'utf8mb4',
 });
 
 con.connect(function (err) {

@@ -11,6 +11,11 @@ class Comment {
             ' FROM comment INNER JOIN users ON comment.id_user =  users.id WHERE id_food = ?';
         return db.query(sql, [id], callback);
     };
+
+    addComment = (data, callback) => {
+        let sql = 'INSERT INTO `comment` SET ?';
+        return db.query(sql, data, callback);
+    };
 }
 
 module.exports = new Comment();

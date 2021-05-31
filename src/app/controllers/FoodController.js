@@ -1,10 +1,12 @@
 const Food = require('../models/Food');
 const Step = require('../models/Step');
 const User = require('../models/User');
+const Like = require('../models/Like');
 const Category = require('../models/Category');
 const Comment = require('../models/Comment');
 const jwt = require('jsonwebtoken');
 const { storage, multer } = require('../../util/imageUpload');
+const { imgUrlToPath } = require('../../util/handlerLinkImg');
 const e = require('express');
 const multipleUploadImage = require('../../util/multipleUploadImage');
 const formidable = require('formidable');
@@ -119,6 +121,9 @@ class FoodControllers {
             console.log(req.file.filename);
             //return res.status(200).end();
             var file = req.file;
+            // var urlFile = file.destination;
+            // var url = imgUrlToPath(urlFile, namefile);
+
             return res.json({
                 message: `Upload file ${req.file.filename} thành công!`,
                 data: req.file,
@@ -195,10 +200,58 @@ class FoodControllers {
             });
         });
     }
+    //[PUT] /food/api/update
+    apiUpdateFood(req, res, next) {
+        var formData = req.body;
+        var datetime = new Date();
+        formData.updatedAt = datetime;
+        var id = req.params.id;
+        if (formData && id) {
+            Food.updateFood([formData, id], (err, result) => {
+                if (err) return res.send(err);
+                return res.send({
+                    message: `Cập nhập thành công!`,
+                });
+            });
+        } else {
+            return next();
+        }
+    }
     //[GET] /food/api/show
     apiFood(req, res, next) {
-        Food.getAllFoodOfUser((err, food) => {
+        Food.getAllFoodOfUser((err, foods) => {
             if (err) res.send(err);
+            return res.send(foods);
+            // for(let food in foods) {
+            //     console.log(`food: ${food}: ${foods[food].id_food}`);
+            //     console.log(foods[food].id_food);
+            //     Like.countLike(foods[food].id_food, (err, count) => {
+            //         console.log(foods[food]);
+            //         // var a = foods[food];
+            //         return res.send("Aa")
+            //     })
+            // }
+            // for (const food in foods) {
+            //     if (Object.hasOwnProperty.call(foods, food)) {
+            //         const element = foods[food];
+            //         console.log(element);
+
+            //     }
+            // }
+        });
+    }
+    //[GET] food/api/show-time
+    apiFoodNew(req, res, next) {
+        Food.getAllFoodByTime((err, foods) => {
+            if (err) res.send(err);
+            return res.send(foods);
+        });
+    }
+    //[GET] food/api/user/:id
+    apiFoodByIdUser(req, res, next) {
+        var id = req.params.id;
+        Food.getAllFoodOfUserByIdUser(id, (err, food) => {
+            if (err) return next(err);
             return res.json(food);
         });
     }
@@ -258,6 +311,21 @@ class FoodControllers {
                 message: 'Lỗi không tìm thấy id khả dụng',
             });
         }
+    }
+    //[DELETE] food/api/delete/:id
+    apiDeleteFoodById(req, res, next) {
+        var id = req.params.id;
+        console.log('ID Food: ' + id);
+        Food.deleteFoodById(id, (err, result) => {
+            if (err)
+                return res.send({
+                    message: `Xoá thất bại`,
+                    error: err,
+                });
+            return res.send({
+                message: `Xoá thành công!`,
+            });
+        });
     }
 }
 

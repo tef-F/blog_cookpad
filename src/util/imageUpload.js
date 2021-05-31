@@ -15,10 +15,10 @@ module.exports = {
                 }
                 return cb(
                     null,
-                    'quen_' +
+                    'food_' +
                         Date.now() +
                         '_' +
-                        raw.toString('hex') +
+                        file.originalname +
                         path.extname(file.originalname),
                 );
             });

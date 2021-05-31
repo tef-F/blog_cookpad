@@ -16,8 +16,12 @@ router.get('/show', userController.checkLogin, foodController.show);
 router.post('/find', foodController.search);
 //API
 router.post('/api/store', foodController.apiStore);
+router.put('/api/update/:id', foodController.apiUpdateFood);
+router.get('/api/user/:id', foodController.apiFoodByIdUser);
+router.delete('/api/delete/:id', foodController.apiDeleteFoodById);
 router.get('/api/show/:id', foodController.apiShowById);
 router.get('/api/show', foodController.apiFood);
+router.get('/api/show-time', foodController.apiFoodNew);
 router.post('/api/find', foodController.apiSearch);
 router.get('/api/category', foodController.apiCategory);
 //
